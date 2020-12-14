@@ -7,30 +7,26 @@ class DoubleService {
     this.api = api;
   }
     
-  async countryCategory(country, category) {
+  async countryName(country, name) {
     let get
     let data
     await axios.get(this.api).then((res) => {
       if (country === "Others") {
         get = _.filter(res.data, {'country':{'name':'Unsorted'}})
-        data = _.filter(get, {'category':category})
-      } else if (category === "Others") {
-        get = _.filter(res.data, (o) => { 
-          return o.country.name.toLowerCase().match(country.toLowerCase())
+        data = _.filter(get, (o) => { 
+          return o.name.toLowerCase().match(name.toLowerCase())
         })
-        data = _.filter(get, {'category':null})
-      } else if (country === "Others" && category === "Others") {
-        get = _.filter(res.data, {'country':{'name':'Unsorted'}})
-        data = _.filter(get, {'category':null})
       } else {
         get = _.filter(res.data, (o) => { 
           return o.country.name.toLowerCase().match(country.toLowerCase())
         })
-        data = _.filter(get, {'category':category})
+        data = _.filter(get, (o) => { 
+          return o.name.toLowerCase().match(name.toLowerCase())
+        })
       }
     }).catch((e) => {
       logEvent.emit("APP-ERROR", {
-        logTitle: "GROUP-BY-COUNTRY-&-CATEGORY-FAILED",
+        logTitle: "GROUP-BY-COUNTRY-&-NAME-FAILED",
         logMessage: e,
         })
         throw new Error(e)
