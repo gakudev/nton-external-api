@@ -7,6 +7,28 @@ class DuplicateService {
     this.api = api;
   }
 
+  async allCategories() {
+    let data
+    let newArr = []
+    await axios.get(this.api).then((res) => {
+      for (let i of res.data) {
+        if (i.category == null) {
+          newArr.push("Others")
+        } else {
+          newArr.push(i.category)
+        }
+      }
+      data = _.uniq(newArr)
+    }).catch((e) => {
+      logEvent.emit("APP-ERROR", {
+        logTitle: "GET-ALL-CATEGORIES-FAILED",
+        logMessage: e,
+      })
+      throw new Error(e)
+    })
+    return data.sort()
+  }
+
   async duplicateName() {
     let data
     let name

@@ -7,7 +7,6 @@ const singleQuery = async (req, res, service) => {
         if (category) { data = await service.category(category) } 
         else if (country) { data = await service.country(country) }
         else if (name) { data = await service.name(name) }
-        else { data = await service.all() }
         res.status(200)
         res.json(data)
     } catch (e) {
