@@ -17,3 +17,7 @@ rest api from iptv
 - FILE_BASE_PATH=PATH-FOLDER
 - LOG_PATH=PATH-FOLDER + /error.log
 - LOG_LEVEL=error/fatal/info (default: error) 
+
+## Link Swagger
+
+https://gitlab.com/robbym777/swagger-nton-external-api/-/blob/master/swagger.yaml
