@@ -9,7 +9,7 @@ const Api = process.env.REST_API
 
 const duplicateService = new DuplicateService(Api)
 
-router.get('/channel-name', (req, res, next) => duplicateChannel(req, res, duplicateService))
-router.get('/all-categories', (req, res, next) => getCategories(req, res, duplicateService))
+router.get('/channel', (req, res, next) => duplicateChannel(req, res, duplicateService))
+router.get('/categories', (req, res, next) => getCategories(req, res, duplicateService))
 
 module.exports = router
